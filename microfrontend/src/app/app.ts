@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { HomeComponent } from './pages/home/home.component';
 
 @Component({
@@ -7,21 +7,22 @@ import { HomeComponent } from './pages/home/home.component';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App implements OnInit {
+export class App implements OnInit, OnDestroy {
   protected readonly title = signal('microfrontend');
+  private readonly onPopState = () => {
+    window.history.pushState({ navigationLocked: true }, '', window.location.href);
+  };
 
   ngOnInit(): void {
-    this.primeHistoryLock();
+    this.activateNavigationLock();
   }
 
-  @HostListener('window:popstate')
-  onPopState() {
-    window.history.go(1);
-    this.primeHistoryLock();
+  ngOnDestroy(): void {
+    window.removeEventListener('popstate', this.onPopState);
   }
 
-  private primeHistoryLock() {
-    window.history.pushState(null, '', window.location.href);
-    window.history.pushState(null, '', window.location.href);
+  private activateNavigationLock() {
+    window.history.pushState({ navigationLocked: true }, '', window.location.href);
+    window.addEventListener('popstate', this.onPopState);
   }
 }
