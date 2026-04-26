@@ -9,7 +9,9 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit, OnDestroy {
+
   private lockedUrl = window.location.href;
+
   private readonly onPopState = () => {
     window.history.pushState({ navigationLocked: true }, '', this.lockedUrl);
   };
