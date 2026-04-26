@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
@@ -8,4 +8,19 @@ import { MatCardModule } from '@angular/material/card';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {}
+export class HomeComponent implements OnInit {
+  ngOnInit(): void {
+    this.primeHistoryLock();
+  }
+
+  @HostListener('window:popstate')
+  onPopState() {
+    window.history.go(1);
+    this.primeHistoryLock();
+  }
+
+  private primeHistoryLock() {
+    window.history.pushState(null, '', window.location.href);
+    window.history.pushState(null, '', window.location.href);
+  }
+}
