@@ -9,9 +9,8 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  private lockedUrl = window.location.href;
   private readonly onPopState = () => {
-    window.history.pushState({ navigationLocked: true }, '', this.lockedUrl);
+    window.history.pushState({ navigationLocked: true }, '', window.location.href);
   };
 
   ngOnInit(): void {
@@ -23,8 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private activateNavigationLock() {
-    this.lockedUrl = window.location.href;
-    window.history.pushState({ navigationLocked: true }, '', this.lockedUrl);
+    window.history.pushState({ navigationLocked: true }, '', window.location.href);
     window.addEventListener('popstate', this.onPopState);
   }
 }
