@@ -8,11 +8,17 @@ $gradiente-fundo: linear-gradient(135deg, #cbd5eb 0%, #e5eaec 100%);
 $gradiente-toolbar: linear-gradient(135deg, red 0%, #e69189 100%);
 
 /* ================================
-   🌍 GLOBAL & BASE
+   🌍 BASE DO COMPONENTE
 ================================ */
-html, body {
-  height: 100%;
-  margin: 0;
+:host {
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  height: 100vh;
+  overflow: hidden;
   background: $gradiente-fundo;
 }
 
@@ -62,7 +68,17 @@ button {
 ================================ */
 .sidenav {
   width: 240px;
-  margin-top: -8px;
+  height: 100%;
+}
+
+mat-sidenav-content {
+  overflow: hidden;
+}
+
+.content {
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* Alinhamento Ícone + Texto na Sidenav */
