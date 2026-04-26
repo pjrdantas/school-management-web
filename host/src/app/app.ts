@@ -45,6 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
       if (event instanceof NavigationEnd) {
         if (!this.isPopStateNavigation) {
           this.lockedUrl = window.location.href;
+          this.pushLockedState();
         }
 
         this.isPopStateNavigation = false;
