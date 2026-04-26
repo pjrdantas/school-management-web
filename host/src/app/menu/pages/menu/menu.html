@@ -1,69 +1,97 @@
-<mat-sidenav-container class="container">
-  <mat-sidenav mode="side" [opened]="opened()" class="sidenav">
-    <mat-nav-list>
-      <a mat-list-item (click)="goHome()">
-        <mat-icon matListItemIcon>home</mat-icon>
-        <span class="item-menu">Home</span>
-      </a>
+<mat-toolbar class="toolbar-gradient">
+  <div class="toolbar-left">
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      matTooltip="Menu"
+      aria-label="Menu"
+    >
+      <mat-icon fontIcon="menu"></mat-icon>
+    </button>
 
-      <a mat-list-item (click)="goStudents()">
-        <mat-icon matListItemIcon>person</mat-icon>
-        <span class="item-menu">Students</span>
-      </a>
+    <span class="data-hora">
+      {{ dataHoraFormatada }}
+    </span>
+  </div>
 
-      <a mat-list-item (click)="goAcademicPeriods()">
-        <mat-icon matListItemIcon>date_range</mat-icon>
-        <span class="item-menu">Academic / Periods</span>
-      </a>
+  <div class="toolbar-center">
+    <span class="titulo-toolbar">Projeto Piloto</span>
+  </div>
 
-      <a mat-list-item (click)="goAcademicClasses()">
-        <mat-icon matListItemIcon>class</mat-icon>
-        <span class="item-menu">Academic / Classes</span>
-      </a>
+  <div class="toolbar-right" *ngIf="authState.usuario$ | async as usuario">
+    <mat-icon fontIcon="person"></mat-icon>
+    <span class="usuario-logado-text">{{ usuario.nome }}</span>
+  </div>
+</mat-toolbar>
 
-      <a mat-list-item (click)="goEnrollmentNew()">
-        <mat-icon matListItemIcon>assignment</mat-icon>
-        <span class="item-menu">Enrollment / New</span>
-      </a>
+<mat-divider></mat-divider>
 
-      <a mat-list-item (click)="goEnrollmentSearch()">
-        <mat-icon matListItemIcon>search</mat-icon>
-        <span class="item-menu">Enrollment / Search</span>
-      </a>
+<mat-menu #menu="matMenu" panelClass="custom-colored-menu">
+  <button mat-menu-item *appHasPermission="'USUARIO'" (click)="irUsuarios()">
+    <mat-icon fontIcon="group"></mat-icon>
+    <span class="item-menu">Usuários</span>
+  </button>
 
-      <a mat-list-item (click)="goUserManagement()">
-        <mat-icon matListItemIcon>manage_accounts</mat-icon>
-        <span class="item-menu">User management</span>
-      </a>
+  <button mat-menu-item *appHasPermission="'PERFIL'" (click)="irPerfis()">
+    <mat-icon fontIcon="assignment_ind"></mat-icon>
+    <span class="item-menu">Perfis</span>
+  </button>
 
-      <a mat-list-item (click)="openMicrofrontend()">
-        <mat-icon matListItemIcon>apps</mat-icon>
-        <span class="item-menu">Microfrontend</span>
-      </a>
+  <button mat-menu-item *appHasPermission="'PERMISSOES'" (click)="irPermissoes()">
+    <mat-icon fontIcon="vpn_key"></mat-icon>
+    <span class="item-menu">Permissões</span>
+  </button>
 
-      <a mat-list-item (click)="signOut()">
-        <mat-icon matListItemIcon>logout</mat-icon>
-        <span class="item-menu">Sign out</span>
-      </a>
-    </mat-nav-list>
-  </mat-sidenav>
+  <button mat-menu-item *appHasPermission="'APLICATIVOS'" (click)="irAplicativos()">
+    <mat-icon fontIcon="open_in_new"></mat-icon>
+    <span class="item-menu">Cadastro Aplicativos</span>
+  </button>
 
-  <mat-sidenav-content>
-    <mat-toolbar class="toolbar-gradient">
-      <button mat-icon-button (click)="toggleMenu()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span class="title">Host</span>
+  <mat-divider></mat-divider>
 
-      <div class="toolbar-right">
-        <span class="data-hora">
-          {{ dataHoraFormatada }}
-        </span>
-      </div>
-    </mat-toolbar>
+  <button mat-menu-item (click)="irHome()">
+    <mat-icon fontIcon="home"></mat-icon>
+    <span class="item-menu">Home</span>
+  </button>
 
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  <button mat-menu-item (click)="irStudents()">
+    <mat-icon fontIcon="person"></mat-icon>
+    <span class="item-menu">Students</span>
+  </button>
+
+  <button mat-menu-item (click)="irAcademicPeriods()">
+    <mat-icon fontIcon="date_range"></mat-icon>
+    <span class="item-menu">Academic / Periods</span>
+  </button>
+
+  <button mat-menu-item (click)="irAcademicClasses()">
+    <mat-icon fontIcon="class"></mat-icon>
+    <span class="item-menu">Academic / Classes</span>
+  </button>
+
+  <button mat-menu-item (click)="irEnrollmentNew()">
+    <mat-icon fontIcon="assignment"></mat-icon>
+    <span class="item-menu">Enrollment / New</span>
+  </button>
+
+  <button mat-menu-item (click)="irEnrollmentSearch()">
+    <mat-icon fontIcon="search"></mat-icon>
+    <span class="item-menu">Enrollment / Search</span>
+  </button>
+
+  <button mat-menu-item (click)="irMicrofrontend()">
+    <mat-icon fontIcon="widgets"></mat-icon>
+    <span class="item-menu">Microfrontend</span>
+  </button>
+
+  <mat-divider></mat-divider>
+
+  <button mat-menu-item (click)="sair()">
+    <mat-icon fontIcon="logout"></mat-icon>
+    <span class="item-menu">Sair</span>
+  </button>
+</mat-menu>
+
+<div class="content-container">
+  <router-outlet></router-outlet>
+</div>
