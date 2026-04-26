@@ -1,9 +1,17 @@
 import { Routes } from '@angular/router';
 import { loadRemoteModule } from '@angular-architects/native-federation';
+import { authGuard, guestGuard } from './auth/guards/auth.guard';
 
 export const routes: Routes = [
   {
+    path: 'auth/login',
+    canMatch: [guestGuard],
+    loadComponent: () =>
+      import('./auth/pages/login/login.component').then(m => m.LoginComponent),
+  },
+  {
     path: '',
+    canMatch: [authGuard],
     loadComponent: () => import('./pages/menu/menu').then(m => m.Menu),
     children: [
       {
@@ -15,11 +23,6 @@ export const routes: Routes = [
         path: 'home',
         loadComponent: () =>
           import('./pages/home/home.component').then(m => m.HomeComponent),
-      },
-      {
-        path: 'auth/login',
-        loadComponent: () =>
-          import('./auth/pages/login/login.component').then(m => m.LoginComponent),
       },
       {
         path: 'students',
@@ -57,6 +60,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'auth/users',
+        loadComponent: () =>
+          import('./auth/pages/users/auth-users.component').then(
+            m => m.AuthUsersComponent,
+          ),
+      },
+      {
         path: 'microfrontend',
         loadComponent: () =>
           loadRemoteModule('mfe1', './Component').then(m => m.HomeComponent),
@@ -65,6 +75,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'auth/login',
   },
 ];

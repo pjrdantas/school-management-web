@@ -6,11 +6,6 @@
         <span class="item-menu">Home</span>
       </a>
 
-      <a mat-list-item (click)="goLogin()">
-        <mat-icon matListItemIcon>lock</mat-icon>
-        <span class="item-menu">Auth / Login</span>
-      </a>
-
       <a mat-list-item (click)="goStudents()">
         <mat-icon matListItemIcon>person</mat-icon>
         <span class="item-menu">Students</span>
@@ -36,9 +31,19 @@
         <span class="item-menu">Enrollment / Search</span>
       </a>
 
+      <a mat-list-item (click)="goUserManagement()">
+        <mat-icon matListItemIcon>manage_accounts</mat-icon>
+        <span class="item-menu">User management</span>
+      </a>
+
       <a mat-list-item (click)="openMicrofrontend()">
         <mat-icon matListItemIcon>apps</mat-icon>
         <span class="item-menu">Microfrontend</span>
+      </a>
+
+      <a mat-list-item (click)="signOut()">
+        <mat-icon matListItemIcon>logout</mat-icon>
+        <span class="item-menu">Sign out</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>

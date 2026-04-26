@@ -3,6 +3,7 @@ import {
   Component,
   OnDestroy,
   OnInit,
+  inject,
   signal,
 } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
@@ -11,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { AuthSessionService } from '../../auth/services/auth-session.service';
 
 @Component({
   selector: 'app-menu',
@@ -30,10 +32,9 @@ export class Menu implements OnInit, OnDestroy {
   private timer!: ReturnType<typeof setInterval>;
   opened = signal(false);
 
-  constructor(
-    private router: Router,
-    private cdr: ChangeDetectorRef,
-  ) {}
+  private readonly router = inject(Router);
+  private readonly cdr = inject(ChangeDetectorRef);
+  private readonly authSession = inject(AuthSessionService);
 
   toggleMenu() {
     this.opened.update(v => !v);
@@ -41,10 +42,6 @@ export class Menu implements OnInit, OnDestroy {
 
   goHome() {
     this.navigateTo('/home');
-  }
-
-  goLogin() {
-    this.navigateTo('/auth/login');
   }
 
   goStudents() {
@@ -65,6 +62,15 @@ export class Menu implements OnInit, OnDestroy {
 
   goEnrollmentSearch() {
     this.navigateTo('/enrollment/search');
+  }
+
+  goUserManagement() {
+    this.navigateTo('/auth/users');
+  }
+
+  signOut() {
+    this.authSession.signOut();
+    this.navigateTo('/auth/login');
   }
 
   openMicrofrontend() {
