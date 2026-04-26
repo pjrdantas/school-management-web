@@ -21,6 +21,7 @@ module.exports = withNativeFederation({
 },
 
 skip: [
+  'rxjs',
   'rxjs/ajax',
   'rxjs/fetch',
   'rxjs/testing',
