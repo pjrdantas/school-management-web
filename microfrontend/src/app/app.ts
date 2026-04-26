@@ -11,15 +11,17 @@ export class App implements OnInit {
   protected readonly title = signal('microfrontend');
 
   ngOnInit(): void {
-    this.lockNavigationState();
+    this.primeHistoryLock();
   }
 
   @HostListener('window:popstate')
   onPopState() {
-    this.lockNavigationState();
+    window.history.go(1);
+    this.primeHistoryLock();
   }
 
-  private lockNavigationState() {
+  private primeHistoryLock() {
+    window.history.pushState(null, '', window.location.href);
     window.history.pushState(null, '', window.location.href);
   }
 }

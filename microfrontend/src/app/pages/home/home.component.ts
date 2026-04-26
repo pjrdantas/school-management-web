@@ -8,17 +8,4 @@ import { MatCardModule } from '@angular/material/card';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit {
-  ngOnInit(): void {
-    this.lockNavigationState();
-  }
-
-  @HostListener('window:popstate')
-  onPopState() {
-    this.lockNavigationState();
-  }
-
-  private lockNavigationState() {
-    window.history.pushState(null, '', window.location.href);
-  }
-}
+export class HomeComponent {}

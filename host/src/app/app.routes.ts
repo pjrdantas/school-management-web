@@ -12,7 +12,7 @@ export const routes: Routes = [
   {
     path: '',
     canMatch: [authGuard],
-    loadComponent: () => import('./pages/menu/menu').then(m => m.Menu),
+    loadComponent: () => import('./menu/pages/menu/menu').then(m => m.Menu),
     children: [
       {
         path: '',
@@ -22,7 +22,7 @@ export const routes: Routes = [
       {
         path: 'home',
         loadComponent: () =>
-          import('./pages/home/home.component').then(m => m.HomeComponent),
+          import('./home/pages/home/home.component').then(m => m.HomeComponent),
       },
       {
         path: 'students',
