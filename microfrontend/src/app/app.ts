@@ -9,8 +9,11 @@ import { HomeComponent } from './pages/home/home.component';
 })
 export class App implements OnInit, OnDestroy {
   protected readonly title = signal('microfrontend');
+
+  private lockedUrl = window.location.href;
+
   private readonly onPopState = () => {
-    window.history.pushState({ navigationLocked: true }, '', window.location.href);
+    window.history.pushState({ navigationLocked: true }, '', this.lockedUrl);
   };
 
   ngOnInit(): void {
@@ -22,7 +25,8 @@ export class App implements OnInit, OnDestroy {
   }
 
   private activateNavigationLock() {
-    window.history.pushState({ navigationLocked: true }, '', window.location.href);
+    this.lockedUrl = window.location.href;
+    window.history.pushState({ navigationLocked: true }, '', this.lockedUrl);
     window.addEventListener('popstate', this.onPopState);
   }
 }
