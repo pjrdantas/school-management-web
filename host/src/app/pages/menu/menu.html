@@ -1,13 +1,41 @@
 <mat-sidenav-container class="container">
   <mat-sidenav mode="side" [opened]="opened()" class="sidenav">
     <mat-nav-list>
-      <!-- HOME DO HOST -->
       <a mat-list-item (click)="goHome()">
         <mat-icon matListItemIcon>home</mat-icon>
         <span class="item-menu">Home</span>
       </a>
 
-      <!-- MICROFRONTEND -->
+      <a mat-list-item (click)="goLogin()">
+        <mat-icon matListItemIcon>lock</mat-icon>
+        <span class="item-menu">Auth / Login</span>
+      </a>
+
+      <a mat-list-item (click)="goStudents()">
+        <mat-icon matListItemIcon>person</mat-icon>
+        <span class="item-menu">Students</span>
+      </a>
+
+      <a mat-list-item (click)="goAcademicPeriods()">
+        <mat-icon matListItemIcon>date_range</mat-icon>
+        <span class="item-menu">Academic / Periods</span>
+      </a>
+
+      <a mat-list-item (click)="goAcademicClasses()">
+        <mat-icon matListItemIcon>class</mat-icon>
+        <span class="item-menu">Academic / Classes</span>
+      </a>
+
+      <a mat-list-item (click)="goEnrollmentNew()">
+        <mat-icon matListItemIcon>assignment</mat-icon>
+        <span class="item-menu">Enrollment / New</span>
+      </a>
+
+      <a mat-list-item (click)="goEnrollmentSearch()">
+        <mat-icon matListItemIcon>search</mat-icon>
+        <span class="item-menu">Enrollment / Search</span>
+      </a>
+
       <a mat-list-item (click)="openMicrofrontend()">
         <mat-icon matListItemIcon>apps</mat-icon>
         <span class="item-menu">Microfrontend</span>
