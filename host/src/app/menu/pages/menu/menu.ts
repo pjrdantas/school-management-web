@@ -192,21 +192,6 @@ export class Menu implements OnInit, OnDestroy {
   irUsuarios() {
     this.router.navigate(['/auth/users']);
   }
-  irPerfis() {
-    this.snackBar.open('Tela de perfis ainda não implementada.', 'Fechar', {
-      duration: 2500,
-    });
-  }
-  irPermissoes() {
-    this.snackBar.open('Tela de permissões ainda não implementada.', 'Fechar', {
-      duration: 2500,
-    });
-  }
-  irAplicativos() {
-    this.snackBar.open('Cadastro de aplicativos ainda não implementado.', 'Fechar', {
-      duration: 2500,
-    });
-  }
   irHome() {
     this.router.navigate(['/home']);
   }

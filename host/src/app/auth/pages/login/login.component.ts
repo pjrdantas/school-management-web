@@ -22,7 +22,7 @@ export class LoginComponent {
       usuario: 'admin',
       nome: 'Administrador',
       perfis: ['ADMIN'],
-      permissoes: ['USUARIO', 'PERFIL', 'PERMISSOES', 'APLICATIVOS'],
+      permissoes: ['USUARIO'],
     });
     this.authSession.signIn();
 
