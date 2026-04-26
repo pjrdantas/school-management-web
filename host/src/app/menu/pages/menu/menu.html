@@ -27,17 +27,13 @@
 <mat-divider></mat-divider>
 
 <mat-menu #menu="matMenu" panelClass="custom-colored-menu">
-  <button mat-menu-item *appHasPermission="'USUARIO'" (click)="irUsuarios()">
-    <mat-icon fontIcon="group"></mat-icon>
-    <span class="item-menu">Usuários</span>
-  </button>
 
-  <mat-divider></mat-divider>
-
-  <button mat-menu-item (click)="irHome()">
+ <button mat-menu-item (click)="irHome()">
     <mat-icon fontIcon="home"></mat-icon>
     <span class="item-menu">Home</span>
   </button>
+
+  <mat-divider></mat-divider>
 
   <button mat-menu-item (click)="irStudents()">
     <mat-icon fontIcon="person"></mat-icon>
@@ -62,6 +58,11 @@
   <button mat-menu-item (click)="irEnrollmentSearch()">
     <mat-icon fontIcon="search"></mat-icon>
     <span class="item-menu">Enrollment / Search</span>
+  </button>
+
+   <button mat-menu-item *appHasPermission="'USUARIO'" (click)="irUsuarios()">
+    <mat-icon fontIcon="group"></mat-icon>
+    <span class="item-menu">Usuários</span>
   </button>
 
   <button mat-menu-item (click)="irMicrofrontend()">

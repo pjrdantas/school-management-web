@@ -1,29 +1,23 @@
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+}
+
 .page-container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f5f6f8;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .federated-card {
-  width: 420px;
-  padding: 32px;
+  width: 100%;
+  min-height: 90vh; /* aqui está a chave */
+
+  background: #ffffff;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(3, 2, 2, 0.08);
   text-align: center;
+  border: 3px solid #667eea;
   border-radius: 16px;
-
-  background: linear-gradient(
-    135deg,
-    #cfe8ff,
-    #e5e5e5
-  );
-
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-
-.federated-card h1 {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 500;
-  color: #1f2937;
+  box-sizing: border-box; /* evita estourar largura */
 }
