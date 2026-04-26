@@ -12,6 +12,7 @@ import { Subscription, filter } from 'rxjs';
 export class AppComponent implements OnInit, OnDestroy {
   private lockedUrl = window.location.href;
   private routerEventsSubscription?: Subscription;
+
   private readonly onPopState = () => {
     window.history.pushState({ navigationLocked: true }, '', this.lockedUrl);
     const target = this.lockedUrl.replace(window.location.origin, '');
@@ -31,6 +32,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private activateNavigationLock() {
     this.lockedUrl = window.location.href;
+
     this.routerEventsSubscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {

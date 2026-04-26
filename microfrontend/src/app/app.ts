@@ -9,7 +9,9 @@ import { HomeComponent } from './pages/home/home.component';
 })
 export class App implements OnInit, OnDestroy {
   protected readonly title = signal('microfrontend');
+
   private lockedUrl = window.location.href;
+
   private readonly onPopState = () => {
     window.history.pushState({ navigationLocked: true }, '', this.lockedUrl);
   };
