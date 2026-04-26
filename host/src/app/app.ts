@@ -18,7 +18,8 @@ export class AppComponent implements OnInit, OnDestroy {
   private isPopStateNavigation = false;
   private routerEventsSubscription?: { unsubscribe: () => void };
   private readonly onPopState = () => {
-    window.history.pushState({ navigationLocked: true }, '', this.lockedUrl);
+    this.pushLockedState();
+    this.pushLockedState();
     const target = this.lockedUrl.replace(window.location.origin, '');
     this.router.navigateByUrl(target, { replaceUrl: true });
   };
@@ -50,7 +51,12 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
 
-    window.history.pushState({ navigationLocked: true }, '', this.lockedUrl);
+    this.pushLockedState();
+    this.pushLockedState();
     window.addEventListener('popstate', this.onPopState);
+  }
+
+  private pushLockedState() {
+    window.history.pushState({ navigationLocked: true }, '', this.lockedUrl);
   }
 }
