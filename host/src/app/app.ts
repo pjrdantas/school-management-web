@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import {
+  NavigationEnd,
+  NavigationStart,
+  Router,
+  RouterOutlet,
+} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +15,7 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 })
 export class AppComponent implements OnInit, OnDestroy {
   private lockedUrl = window.location.href;
+  private isPopStateNavigation = false;
   private routerEventsSubscription?: { unsubscribe: () => void };
   private readonly onPopState = () => {
     window.history.pushState({ navigationLocked: true }, '', this.lockedUrl);
@@ -31,8 +37,16 @@ export class AppComponent implements OnInit, OnDestroy {
   private activateNavigationLock() {
     this.lockedUrl = window.location.href;
     this.routerEventsSubscription = this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.isPopStateNavigation = event.navigationTrigger === 'popstate';
+      }
+
       if (event instanceof NavigationEnd) {
-        this.lockedUrl = window.location.href;
+        if (!this.isPopStateNavigation) {
+          this.lockedUrl = window.location.href;
+        }
+
+        this.isPopStateNavigation = false;
       }
     });
 
