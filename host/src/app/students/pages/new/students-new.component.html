@@ -1,0 +1,56 @@
+<div class="page-container">
+  <mat-card class="student-card">
+    <mat-card-header>
+      <mat-card-title>Cadastro de Aluno</mat-card-title>
+      <mat-card-subtitle>MVP KAN-33 - formulário base</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form class="student-form" [formGroup]="alunoForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+          <mat-label>Nome completo *</mat-label>
+          <input matInput formControlName="nomeCompleto" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>CPF *</mat-label>
+          <input matInput formControlName="cpf" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Data de nascimento *</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dataNascimento" />
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>E-mail *</mat-label>
+          <input matInput type="email" formControlName="email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Telefone</mat-label>
+          <input matInput formControlName="telefone" />
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-raised-button color="primary" type="submit">
+            <mat-icon fontIcon="save"></mat-icon>
+            Salvar
+          </button>
+
+          <button mat-stroked-button type="button" (click)="onCancel()">
+            <mat-icon fontIcon="close"></mat-icon>
+            Cancelar
+          </button>
+        </div>
+      </form>
+
+      <div class="payload-preview" *ngIf="payloadPreview as payload">
+        <h3>Payload pronto para integração:</h3>
+        <pre>{{ payload | json }}</pre>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
