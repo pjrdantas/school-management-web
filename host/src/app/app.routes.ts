@@ -32,6 +32,27 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'students/new',
+        loadComponent: () =>
+          import('./students/pages/new/students-new.component').then(
+            m => m.StudentsNewComponent,
+          ),
+      },
+      {
+        path: 'students/:id',
+        loadComponent: () =>
+          import('./students/pages/detail/students-detail.component').then(
+            m => m.StudentsDetailComponent,
+          ),
+      },
+      {
+        path: 'students/:id/edit',
+        loadComponent: () =>
+          import('./students/pages/new/students-new.component').then(
+            m => m.StudentsNewComponent,
+          ),
+      },
+      {
         path: 'academic/periods',
         loadComponent: () =>
           import('./academic/pages/periods/academic-periods.component').then(

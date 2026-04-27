@@ -1,23 +1,53 @@
 :host {
   display: block;
-  width: 100%;
-  min-height: 100vh;
-}
-
-.page-container {
-  width: 100%;
-  min-height: 100vh;
 }
 
 .federated-card {
   width: 100%;
-  min-height: 90vh; /* aqui está a chave */
-
-  background: #ffffff;
-  padding: 2rem;
-  box-shadow: 0 10px 30px rgba(3, 2, 2, 0.08);
-  text-align: center;
-  border: 3px solid #667eea;
+  border: 2px solid #667eea;
   border-radius: 16px;
-  box-sizing: border-box; /* evita estourar largura */
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.empty-state {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f7f8ff;
+}
+
+.list {
+  margin-top: 12px;
+  display: grid;
+  gap: 12px;
+}
+
+.list-item {
+  border: 1px solid #d7def8;
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.student-info h3 {
+  margin: 0 0 6px;
+}
+
+.student-info p {
+  margin: 0 0 4px;
+}
+
+.actions-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 110px;
 }
