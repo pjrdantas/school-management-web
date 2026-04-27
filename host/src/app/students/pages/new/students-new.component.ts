@@ -134,7 +134,7 @@ export class StudentsNewComponent implements OnInit {
   }
 
   private emailConsistenteValidator(): ValidatorFn {
-    const emailRegex = /^[a-z0-9]+(?:\.[a-z0-9]+)*@[a-z0-9.-]+\.[a-z]{2,}$/i;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+$/;
     return (control: AbstractControl): ValidationErrors | null => {
       if (!control.value) {
         return null;

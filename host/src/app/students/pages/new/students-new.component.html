@@ -38,9 +38,9 @@
 
         <mat-form-field appearance="outline">
           <mat-label>E-mail *</mat-label>
-          <input matInput type="email" formControlName="email" placeholder="fulano.silva@email.com" />
+          <input matInput type="email" formControlName="email" placeholder="pjr_dantas@hotmail ou fulano.silva@email.com" />
           <mat-error *ngIf="alunoForm.controls.email.hasError('emailInvalido')">
-            Use um e-mail consistente no formato fulano.silva@email.com.
+            Informe um e-mail válido no formato usuario@dominio.
           </mat-error>
         </mat-form-field>
 
