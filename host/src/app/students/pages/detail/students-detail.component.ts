@@ -21,6 +21,9 @@ export class StudentsDetailComponent implements OnInit {
   private readonly snackBar = inject(MatSnackBar);
 
   protected readonly student = signal<Student | null>(null);
+  // Mantidos para compatibilidade com fluxo de responsáveis (quando a feature estiver ativa).
+  protected readonly responsibles = signal<unknown[]>([]);
+  protected selectedResponsibleId = '';
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
